@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">My Applicationbebe</string>
+    <string name="disclaimer">Картинки взяты с pexels.com</string>
+    <string name="b_menu">МЕНЮ</string>
+    <string name="b_favourites">ИЗБРАННОЕ</string>
+    <string name="b_watch_it_later">ПОСМОТРЕТЬ ПОЗЖЕ</string>
+    <string name="b_compilation">ПОДБОРКИ</string>
+    <string name="b_settings">НАСТРОЙКИ</string>
 </resources>

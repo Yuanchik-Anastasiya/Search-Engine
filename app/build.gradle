@@ -1,15 +1,20 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id 'kotlin-parcelize'
 }
 
 android {
+    buildFeatures {
+        viewBinding = true
+    }
     namespace 'com.yuanchik.myapplicationbebe'
     compileSdk 34
 
     defaultConfig {
         applicationId "com.yuanchik.myapplicationbebe"
         minSdk 21
+        //noinspection OldTargetApi
         targetSdk 34
         versionCode 1
         versionName "1.0"
