@@ -6,4 +6,5 @@
     <string name="b_watch_it_later">ПОСМОТРЕТЬ ПОЗЖЕ</string>
     <string name="b_compilation">ПОДБОРКИ</string>
     <string name="b_settings">НАСТРОЙКИ</string>
+    <string name="title_topAppBar">Search it!</string>
 </resources>
