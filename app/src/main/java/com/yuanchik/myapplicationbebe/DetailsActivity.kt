@@ -9,33 +9,30 @@ import android.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.ViewCompat.*
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.yuanchik.myapplicationbebe.databinding.ActivityDetailsBinding
+import com.yuanchik.myapplicationbebe.databinding.ActivityMainBinding
 
 class DetailsActivity : AppCompatActivity() {
-    private val details_toolbar = findViewById<Toolbar>(R.id.details_toolbar)
-    private val details_poster = findViewById<ImageView>(R.id.details_poster)
-    private val details_description = findViewById<TextView>(R.id.details_description)
+    private var binding: ActivityDetailsBinding? = null
 
-    @SuppressLint("MissingInflatedId")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_details)
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivityDetailsBinding.inflate(layoutInflater)
+        val view = binding!!.root
+        setContentView(view)
 
         setFilmsDetails()
     }
     private fun setFilmsDetails() {
         val film = intent.extras?.get("film") as Film
 
-        details_toolbar.title = film.title
-        details_poster.setImageResource(film.poster)
-        details_description.text = film.description
+        binding?.detailsToolbar?.title = film.title
+        binding?.detailsPoster?.setImageResource(film.poster)
+        binding?.detailsDescription?.text = film.description
     }
 }

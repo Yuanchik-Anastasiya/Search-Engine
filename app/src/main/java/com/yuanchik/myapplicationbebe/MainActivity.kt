@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.yuanchik.myapplicationbebe.R.string
 import com.yuanchik.myapplicationbebe.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,44 +17,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
 
-private val main_recycler = findViewById<RecyclerView>(R.id.main_recycler)
-
      val filmsDataBase = listOf(
-        Film(
-            getString(R.string.title_venom),
-            R.drawable.venom,
-            getString(R.string.description_venom)
-        ),
-        Film(
-            getString(R.string.title_beekeeper),
-            R.drawable.beekeeper,
-            getString(R.string.description_beekeeper)
-        ),
-        Film(
-            getString(R.string.title_despicable_me),
-            R.drawable.despicable_me4,
-            getString(R.string.description_despicable_me)
-        ),
-        Film(
-            getString(R.string.title_alien),
-            R.drawable.alien,
-            getString(R.string.description_alien)
-        ),
-        Film(
-            getString(R.string.title_puzzle),
-            R.drawable.puzzle2,
-            getString(R.string.description_puzzle)
-        ),
-        Film(
-            getString(R.string.title_bad_guys),
-            R.drawable.the_bad_guys_to_the_end,
-            getString(R.string.discription_bad_guys)
-        ),
-        Film(
-            getString(R.string.title_planet_of_the_apes),
-            R.drawable.planet_of_the_apes,
-            getString(R.string.discription_planet_of_the_apes)
-        )
+         Film("Веном: Последний танец", R.drawable.venom, "Эдди и Веном в бегах. Преследуемые обоими мирами и с приближающейся сетью, дуэт вынужден принять сокрушительное решение, которое опустит занавес над последним танцем Венома и Эдди."),
+         Film("Пчеловод", R.drawable.beekeeper, "Добросердечная домовладелица совершает самоубийство, став жертвой фишинговой аферы, что заставляет бывшего сотрудника. Пасечника Адама Клея начать жестокую кампанию по отмщению виновным."),
+         Film("Гадкий я 4", R.drawable.despicable_me4, "Грю, Люси, Марго, Эдит и Агнес приветствуют нового члена семьи, Грю-младшего, который намерен мучить своего отца."),
+         Film("Чужой: Ромул", R.drawable.alien, "Исследуя недра заброшенной космической станции, группа молодых космических колонистов сталкивается лицом к лицу с самой ужасающей формой жизни во Вселенной."),
+         Film("Головоломка 2", R.drawable.puzzle2, "Продолжение, в котором Райли вступает в период полового созревания и в результате испытывает совершенно новые, более сложные эмоции."),
+         Film("Плохие парни до конца", R.drawable.the_bad_guys_to_the_end, "Когда их покойный капитан полиции оказывается связанным с наркокартелями, остроумные копы Майами Майк Лоури и Маркус Бернетт отправляются на опасную миссию, чтобы очистить его имя."),
+         Film("Планета обезьян: Новое царство", R.drawable.planet_of_the_apes, "Спустя много лет после правления Цезаря молодая обезьяна отправляется в путешествие, которое заставит ее подвергнуть сомнению все, чему ее учили о прошлом, и сделать выбор, который определит будущее как обезьян, так и людей.")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,7 +42,7 @@ private val main_recycler = findViewById<RecyclerView>(R.id.main_recycler)
         }
         initMenuButtons()
 
-        main_recycler.apply {
+        binding.mainRecycler?.apply {
             filmsAdapter = FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener{
                 override fun click(film: Film) {
                     val bundle = Bundle()
