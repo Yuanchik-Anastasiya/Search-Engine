@@ -1,25 +1,22 @@
 package com.yuanchik.myapplicationbebe
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.yuanchik.myapplicationbebe.R.string
 import com.yuanchik.myapplicationbebe.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private var backPressed = 0L
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-       binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
@@ -29,6 +26,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         initNavigation()
+
         supportFragmentManager
             .beginTransaction()
             .add(R.id.fragment_placeholder, HomeFragment())
@@ -49,22 +47,43 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 1) {
+            if (backPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+                super.onBackPressed()
+                finish()
+            } else {
+                Toast.makeText(this, "Нажмите дважды чтобы выйти", Toast.LENGTH_SHORT).show()
+            }
+            backPressed = System.currentTimeMillis()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    companion object {
+        const val TIME_INTERVAL = 2000
+    }
+
     private fun initNavigation() {
-        binding.bottomNavigation?.setOnNavigationItemSelectedListener {
+        binding.bottomNavigation.setOnNavigationItemSelectedListener {
 
             when (it.itemId) {
                 R.id.favorites -> {
                     Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
                     true
                 }
+
                 R.id.watch_later -> {
                     Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
                     true
                 }
+
                 R.id.selections -> {
                     Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
                     true
                 }
+
                 else -> false
             }
         }

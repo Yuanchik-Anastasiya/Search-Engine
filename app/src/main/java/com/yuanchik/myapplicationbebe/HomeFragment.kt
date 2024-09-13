@@ -1,22 +1,19 @@
 package com.yuanchik.myapplicationbebe
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.yuanchik.myapplicationbebe.databinding.FragmentDetailsBinding
 import com.yuanchik.myapplicationbebe.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
-    private var binding_: FragmentHomeBinding? = null
-    private val binding get() = binding_!!
+class HomeFragment(private var fragmentHomeBinding: FragmentHomeBinding? = null) : Fragment() {
+    private val binding get() = fragmentHomeBinding!!
 
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
 
-    val filmsDataBase = listOf(
+    private val filmsDataBase = listOf(
         Film(
             "Веном: Последний танец",
             R.drawable.venom,
@@ -58,20 +55,21 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding_ = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        binding_ = null
+        fragmentHomeBinding = null
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.mainRecycler?.apply {
+        binding.mainRecycler.apply {
             filmsAdapter = FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener{
                 override fun click(film: Film) {
                     (requireActivity() as MainActivity).launchDetailsFragment(film)

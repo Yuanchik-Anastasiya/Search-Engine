@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class FilmViewHolder(
-    private val itemView: View) : RecyclerView.ViewHolder(itemView) {
+    itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val title = itemView.findViewById<TextView>(R.id.title)
     private val poster = itemView.findViewById<ImageView>(R.id.poster)
