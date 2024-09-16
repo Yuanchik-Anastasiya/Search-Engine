@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yuanchik.myapplicationbebe.databinding.FragmentHomeBinding
+import java.util.Locale
 
 class HomeFragment(private var fragmentHomeBinding: FragmentHomeBinding? = null) : Fragment() {
     private val binding get() = fragmentHomeBinding!!
@@ -53,7 +55,7 @@ class HomeFragment(private var fragmentHomeBinding: FragmentHomeBinding? = null)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -70,11 +72,12 @@ class HomeFragment(private var fragmentHomeBinding: FragmentHomeBinding? = null)
         super.onViewCreated(view, savedInstanceState)
 
         binding.mainRecycler.apply {
-            filmsAdapter = FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener{
-                override fun click(film: Film) {
-                    (requireActivity() as MainActivity).launchDetailsFragment(film)
-                }
-            })
+            filmsAdapter =
+                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
+                    override fun click(film: Film) {
+                        (requireActivity() as MainActivity).launchDetailsFragment(film)
+                    }
+                })
 
             adapter = filmsAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -83,5 +86,28 @@ class HomeFragment(private var fragmentHomeBinding: FragmentHomeBinding? = null)
         }
 
         filmsAdapter.addItems(filmsDataBase)
+
+        binding.searchView.setOnClickListener {
+            binding.searchView.isIconified = false
+
+            binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText!!.isEmpty()) {
+                        filmsAdapter.addItems(filmsDataBase)
+                        return true
+                    }
+                    val result = filmsDataBase.filter {
+                        it.title.toLowerCase(Locale.getDefault()).contains(newText.toLowerCase(
+                            Locale.getDefault()))
+                    }
+                    filmsAdapter.addItems(result)
+                    return true
+                }
+            })
+        }
     }
 }
