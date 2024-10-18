@@ -1,23 +1,17 @@
 package com.yuanchik.myapplicationbebe
 
 import android.os.Bundle
-import android.transition.Scene
-import android.transition.Slide
-import android.transition.TransitionManager
-import android.transition.TransitionSet
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.yuanchik.myapplicationbebe.databinding.FragmentHomeBinding
 import java.util.Locale
 
-class HomeFragment(private var fragmentHomeBinding: FragmentHomeBinding? = null) : Fragment() {
-    private val binding get() = fragmentHomeBinding!!
+class HomeFragment(private var binding3: FragmentHomeBinding? = null) : Fragment() {
+    private val binding get() = binding3!!
 
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
 
@@ -59,68 +53,61 @@ class HomeFragment(private var fragmentHomeBinding: FragmentHomeBinding? = null)
         )
     )
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding3 = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        fragmentHomeBinding = null
+        binding3 = null
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val scene = Scene.getSceneForLayout(
-            binding.homeFragmentRoot,
-            R.layout.merge_home_screen_content,
-            requireContext()
-        )
-        val searchSlide = Slide(Gravity.TOP).addTarget(R.id.search_view)
-        val recyclerSlide = Slide(Gravity.BOTTOM).addTarget(R.id.main_recycler)
-        val customTransition = TransitionSet().apply {
-            duration = 500
-            addTransition(recyclerSlide)
-            addTransition(searchSlide)
-        }
+        AnimationHelper.performFragmentCircularRevealAnimation(binding.homeFragmentRoot, requireActivity(), 1)
 
-        TransitionManager.go(scene, customTransition)
+        initSearchView()
 
+        initRecyckler()
 
-        binding.homeFragmentRoot.findViewById<SearchView>(R.id.search_view).setOnClickListener {
-            binding.homeFragmentRoot.findViewById<SearchView>(R.id.search_view).isIconified = false
+        filmsAdapter.addItems(filmsDataBase)
+    }
 
-            binding.homeFragmentRoot.findViewById<SearchView>(R.id.search_view)
-                .setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                    override fun onQueryTextSubmit(query: String?): Boolean {
+    private fun initSearchView() {
+        binding.searchView
+            .setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText!!.isEmpty()) {
+                        filmsAdapter.addItems(filmsDataBase)
                         return true
                     }
-
-                    override fun onQueryTextChange(newText: String?): Boolean {
-                        if (newText!!.isEmpty()) {
-                            filmsAdapter.addItems(filmsDataBase)
-                            return true
-                        }
-                        val result = filmsDataBase.filter {
-                            it.title.lowercase(Locale.getDefault()).contains(
-                                newText.lowercase(
-                                    Locale.getDefault()
-                                )
+                    val result = filmsDataBase.filter {
+                        it.title.lowercase(Locale.getDefault()).contains(
+                            newText.lowercase(
+                                Locale.getDefault()
                             )
-                        }
-                        filmsAdapter.addItems(result)
-                        return true
+                        )
                     }
-                })
-            filmsAdapter.addItems(filmsDataBase)
-        }
-        binding.homeFragmentRoot.findViewById<RecyclerView>(R.id.main_recycler).apply {
+                    filmsAdapter.addItems(result)
+                    return true
+                }
+            })
+    }
+
+    private fun initRecyckler() {
+        binding.mainRecycler.apply {
             filmsAdapter =
                 FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
                     override fun click(film: Film) {

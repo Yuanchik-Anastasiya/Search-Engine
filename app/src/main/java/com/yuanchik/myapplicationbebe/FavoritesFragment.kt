@@ -11,28 +11,31 @@ import com.yuanchik.myapplicationbebe.databinding.FragmentFavoritesBinding
 class FavoritesFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
 
-    private var fragmentFavoritesBinding: FragmentFavoritesBinding? = null
+    private var binding1: FragmentFavoritesBinding? = null
 
-    private val binding get() = fragmentFavoritesBinding!!
+    private val binding get() = binding1!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        FragmentFavoritesBinding.inflate(inflater, container, false)
+        binding1 = FragmentFavoritesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        fragmentFavoritesBinding = null
+        binding1 = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val favoritesList: List<Film> = emptyList()
+
+        AnimationHelper.performFragmentCircularRevealAnimation(binding.favoritesFragmentRoot, requireActivity(),2)
+
 
         binding.favoritesRecycler
             .apply {
