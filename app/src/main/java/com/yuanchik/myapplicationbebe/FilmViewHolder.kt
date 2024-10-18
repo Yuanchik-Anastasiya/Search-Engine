@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 
 class FilmViewHolder(
@@ -15,7 +16,10 @@ class FilmViewHolder(
 
     fun bind(film: Film) {
         title.text = film.title
-        poster.setImageResource(film.poster)
+        Glide.with(itemView)
+            .load(film.poster)
+            .centerCrop()
+            .into(poster)
         description.text = film.description
     }
 }

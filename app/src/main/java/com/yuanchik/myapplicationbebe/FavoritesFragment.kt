@@ -12,6 +12,7 @@ class FavoritesFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
 
     private var fragmentFavoritesBinding: FragmentFavoritesBinding? = null
+
     private val binding get() = fragmentFavoritesBinding!!
 
     override fun onCreateView(
