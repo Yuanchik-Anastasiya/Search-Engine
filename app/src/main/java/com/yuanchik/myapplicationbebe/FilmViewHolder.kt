@@ -8,11 +8,13 @@ import com.bumptech.glide.Glide
 
 
 class FilmViewHolder(
-    itemView: View) : RecyclerView.ViewHolder(itemView) {
+    itemView: View,
+) : RecyclerView.ViewHolder(itemView) {
 
     private val title = itemView.findViewById<TextView>(R.id.title)
     private val poster = itemView.findViewById<ImageView>(R.id.poster)
     private val description = itemView.findViewById<TextView>(R.id.description)
+    private val ratingDonut = itemView.findViewById<RatingDonutView>(R.id.rating_donut)
 
     fun bind(film: Film) {
         title.text = film.title
@@ -21,5 +23,6 @@ class FilmViewHolder(
             .centerCrop()
             .into(poster)
         description.text = film.description
+        ratingDonut.setProgress((film.rating * 10).toInt())
     }
 }

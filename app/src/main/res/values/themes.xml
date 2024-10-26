@@ -1,5 +1,10 @@
 <resources>
     <!-- Base application theme. -->
+    <declare-styleable name="RatingDonutView">
+        <attr name="progress" format="integer" />
+        <attr name="stroke" format="float" />
+    </declare-styleable>
+
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
@@ -8,6 +13,8 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+
+
 
     <style name="Theme.MyApplicationbebe" parent="Base.Theme.MyApplicationbebe" />
 </resources>
