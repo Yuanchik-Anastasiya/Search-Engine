@@ -1,4 +1,4 @@
-package com.yuanchik.myapplicationbebe
+package com.yuanchik.myapplicationbebe.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.yuanchik.myapplicationbebe.view.rv_adapters.FilmListRecyclerAdapter
+import com.yuanchik.myapplicationbebe.view.rv_adapters.TopSpacingItemDecoration
 import com.yuanchik.myapplicationbebe.databinding.FragmentFavoritesBinding
+import com.yuanchik.myapplicationbebe.domain.Film
+import com.yuanchik.myapplicationbebe.utils.AnimationHelper
+import com.yuanchik.myapplicationbebe.view.MainActivity
 
 class FavoritesFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
@@ -39,7 +44,7 @@ class FavoritesFragment : Fragment() {
 
         binding.favoritesRecycler
             .apply {
-                filmsAdapter = FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener{
+                filmsAdapter = FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
                     override fun click(film: Film) {
                         (requireActivity() as MainActivity).launchDetailsFragment(film)
                     }

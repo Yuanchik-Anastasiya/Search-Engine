@@ -1,9 +1,12 @@
-package com.yuanchik.myapplicationbebe
+package com.yuanchik.myapplicationbebe.view.rv_adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.yuanchik.myapplicationbebe.view.rv_viewholders.FilmViewHolder
+import com.yuanchik.myapplicationbebe.R
+import com.yuanchik.myapplicationbebe.domain.Film
 
 class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

@@ -1,10 +1,13 @@
-package com.yuanchik.myapplicationbebe
+package com.yuanchik.myapplicationbebe.view.rv_viewholders
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.yuanchik.myapplicationbebe.R
+import com.yuanchik.myapplicationbebe.domain.Film
+import com.yuanchik.myapplicationbebe.RatingDonutView
 
 
 class FilmViewHolder(

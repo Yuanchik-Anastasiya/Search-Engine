@@ -1,16 +1,14 @@
-package com.yuanchik.myapplicationbebe
+package com.yuanchik.myapplicationbebe.utils
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
-import com.airbnb.lottie.LottieAnimationView
-import com.yuanchik.myapplicationbebe.databinding.ActivityMainBinding
+import com.yuanchik.myapplicationbebe.R
 import com.yuanchik.myapplicationbebe.databinding.ActivitySplashScreenBinding
+import com.yuanchik.myapplicationbebe.view.MainActivity
 
 class SplashScreen : AppCompatActivity() {
 

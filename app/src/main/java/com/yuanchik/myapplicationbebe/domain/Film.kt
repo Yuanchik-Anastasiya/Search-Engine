@@ -1,4 +1,4 @@
-package com.yuanchik.myapplicationbebe
+package com.yuanchik.myapplicationbebe.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

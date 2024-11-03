@@ -1,21 +1,10 @@
-package com.yuanchik.myapplicationbebe
+package com.yuanchik.myapplicationbebe.data
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.yuanchik.myapplicationbebe.databinding.FragmentHomeBinding
-import java.util.Locale
+import com.yuanchik.myapplicationbebe.R
+import com.yuanchik.myapplicationbebe.domain.Film
 
-class HomeFragment(private var binding3: FragmentHomeBinding? = null) : Fragment() {
-    private val binding get() = binding3!!
-
-    private lateinit var filmsAdapter: FilmListRecyclerAdapter
-
-    private val filmsDataBase = listOf(
+class MainRepository {
+    val filmsDataBase = listOf(
         Film(
             "Веном: Последний танец",
             R.drawable.venom,
@@ -52,73 +41,4 @@ class HomeFragment(private var binding3: FragmentHomeBinding? = null) : Fragment
             "Спустя много лет после правления Цезаря молодая обезьяна отправляется в путешествие, которое заставит ее подвергнуть сомнению все, чему ее учили о прошлом, и сделать выбор, который определит будущее как обезьян, так и людей.", 10f
         )
     )
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        binding3 = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding3 = null
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        AnimationHelper.performFragmentCircularRevealAnimation(binding.homeFragmentRoot, requireActivity(), 1)
-
-        initSearchView()
-
-        initRecyckler()
-
-        filmsAdapter.addItems(filmsDataBase)
-    }
-
-    private fun initSearchView() {
-        binding.searchView
-            .setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    if (newText!!.isEmpty()) {
-                        filmsAdapter.addItems(filmsDataBase)
-                        return true
-                    }
-                    val result = filmsDataBase.filter {
-                        it.title.lowercase(Locale.getDefault()).contains(
-                            newText.lowercase(
-                                Locale.getDefault()
-                            )
-                        )
-                    }
-                    filmsAdapter.addItems(result)
-                    return true
-                }
-            })
-    }
-
-    private fun initRecyckler() {
-        binding.mainRecycler.apply {
-            filmsAdapter =
-                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
-                    override fun click(film: Film) {
-                        (requireActivity() as MainActivity).launchDetailsFragment(film)
-                    }
-                })
-
-            adapter = filmsAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-            val decorator = TopSpacingItemDecoration(8)
-            addItemDecoration(decorator)
-        }
-    }
 }

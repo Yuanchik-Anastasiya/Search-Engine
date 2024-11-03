@@ -1,4 +1,4 @@
-package com.yuanchik.myapplicationbebe
+package com.yuanchik.myapplicationbebe.utils
 
 import android.app.Activity
 import android.view.View

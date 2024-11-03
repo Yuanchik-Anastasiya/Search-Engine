@@ -8,7 +8,7 @@
     android:visibility="invisible"
     tools:visibility="visible"
     android:background="@drawable/background_home"
-    tools:context=".HomeFragment">
+    tools:context=".view.fragments.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -56,7 +56,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

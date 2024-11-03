@@ -1,8 +1,6 @@
-package com.yuanchik.myapplicationbebe
+package com.yuanchik.myapplicationbebe.view
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,10 +8,17 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
-import com.airbnb.lottie.LottieAnimationView
+import com.yuanchik.myapplicationbebe.view.fragments.DetailsFragment
+import com.yuanchik.myapplicationbebe.view.fragments.FavoritesFragment
+import com.yuanchik.myapplicationbebe.view.fragments.HomeFragment
+import com.yuanchik.myapplicationbebe.R
+import com.yuanchik.myapplicationbebe.view.fragments.SelectionsFragment
+import com.yuanchik.myapplicationbebe.view.fragments.WatchLaterFragment
 import com.yuanchik.myapplicationbebe.databinding.ActivityMainBinding
+import com.yuanchik.myapplicationbebe.domain.Film
 
 class MainActivity : AppCompatActivity() {
+    
 
     private var backPressed = 0L
     private lateinit var binding: ActivityMainBinding
@@ -33,7 +38,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val animatedVectorDrawable = AnimatedVectorDrawableCompat.create(this, R.drawable.anim_vector)
+        val animatedVectorDrawable = AnimatedVectorDrawableCompat.create(this,
+            R.drawable.anim_vector
+        )
         animatedVectorDrawable?.start()
 
         initNavigation()
