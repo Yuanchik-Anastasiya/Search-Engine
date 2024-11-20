@@ -16,9 +16,11 @@ import com.yuanchik.myapplicationbebe.view.fragments.SelectionsFragment
 import com.yuanchik.myapplicationbebe.view.fragments.WatchLaterFragment
 import com.yuanchik.myapplicationbebe.databinding.ActivityMainBinding
 import com.yuanchik.myapplicationbebe.domain.Film
+import com.yuanchik.myapplicationbebe.viewmodel.HomeFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    
 
     private var backPressed = 0L
     private lateinit var binding: ActivityMainBinding

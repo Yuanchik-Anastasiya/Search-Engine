@@ -6,11 +6,13 @@ import com.yuanchik.myapplicationbebe.data.ApiConstants
 import com.yuanchik.myapplicationbebe.data.MainRepository
 import com.yuanchik.myapplicationbebe.data.TmdbApi
 import com.yuanchik.myapplicationbebe.domain.Interactor
+import dagger.hilt.android.HiltAndroidApp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
 
 class App : Application() {
     lateinit var repo: MainRepository
