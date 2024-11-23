@@ -16,9 +16,6 @@ import com.yuanchik.myapplicationbebe.view.fragments.SelectionsFragment
 import com.yuanchik.myapplicationbebe.view.fragments.WatchLaterFragment
 import com.yuanchik.myapplicationbebe.databinding.ActivityMainBinding
 import com.yuanchik.myapplicationbebe.domain.Film
-import com.yuanchik.myapplicationbebe.viewmodel.HomeFragmentViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -67,6 +64,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount == 1) {
             if (backPressed + TIME_INTERVAL > System.currentTimeMillis()) {

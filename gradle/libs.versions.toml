@@ -2,34 +2,56 @@
 agp = "8.6.1"
 appcompatVersion = "1.7.0"
 converterGson = "2.6.0"
-coreKtxVersion = "1.13.1"
-glide = "4.11.0"
+coreKtxVersion = "1.15.0"
+dagger = "2.52"
+daggerAndroid = "2.28"
+daggerAndroidProcessor = "2.28"
+daggerAndroidSupport = "2.28"
+daggerCompiler = "2.28"
+daggerVersion = "2.28.3"
+glide = "4.16.0"
 hiddensearchwithrecyclerview = "0.0.5"
 hiltAndroidGradlePlugin = "2.28-alpha"
 hiltAndroidGradlePluginVersion = "2.38.1"
 koinAndroid = "2.0.1"
-kotlin = "1.9.22"
-coreKtx = "1.13.1"
+kotlin = "2.0.21"
+coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
+kotlinStdlibJdk7 = "2.0.21"
 loggingInterceptor = "3.12.6"
 lottie = "3.4.4"
 material = "1.12.0"
-activity = "1.9.2"
-constraintlayout = "2.1.4"
+activity = "1.9.3"
+constraintlayout = "2.2.0"
 retrofit = "2.9.0"
+roomCompiler = " 2.6.1"
+roomRuntime = "2.6.1"
 supportAnnotations = "28.0.0"
+xmoshiKotlinCodegen = "1.15.1"
 
 [libraries]
 androidx-appcompat-v120 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-ktx-v131 = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-compiler-v261 = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+androidx-room-compiler_x-x-x = { module = "androidx.room:room-compiler 2.6.1" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 appcompat-v7 = { module = "com.android.support:appcompat-v7", version.ref = "supportAnnotations" }
-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+compiler = { module = "com.github.bumptech.glide:ksp", version.ref = "glide" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+dagger-compiler-v228 = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
+dagger-v228 = { module = "com.google.dagger:dagger", version.ref = "daggerVersion" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+google-dagger-android = { module = "com.google.dagger:dagger-android", version.ref = "daggerAndroid" }
+google-dagger-android-processor = { module = "com.google.dagger:dagger-android-processor", version.ref = "daggerAndroidProcessor" }
+google-dagger-android-support = { module = "com.google.dagger:dagger-android-support", version.ref = "daggerAndroidSupport" }
 hiddensearchwithrecyclerview = { module = "com.nicolettilu:hiddensearchwithrecyclerview", version.ref = "hiddensearchwithrecyclerview" }
 hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltAndroidGradlePlugin" }
 hilt-android-gradle-plugin-v2381 = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltAndroidGradlePluginVersion" }
@@ -41,6 +63,7 @@ koin-android = { module = "org.koin:koin-android", version.ref = "koinAndroid" }
 koin-core = { module = "io.insert-koin:koin-core" }
 koin-ktor = { module = "io.insert-koin:koin-ktor" }
 koin-test = { module = "io.insert-koin:koin-test" }
+kotlin-stdlib-jdk7 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlinStdlibJdk7" }
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
@@ -48,6 +71,7 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 support-annotations = { group = "com.android.support", name = "support-annotations", version.ref = "supportAnnotations" }
+xmoshi-kotlin-codegen = { module = "com.squareup.moshi: moshi-kotlin-codegen", version.ref = "xmoshiKotlinCodegen" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

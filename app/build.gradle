@@ -13,7 +13,7 @@ android {
 
 
     namespace 'com.yuanchik.myapplicationbebe'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.yuanchik.myapplicationbebe"
@@ -53,11 +53,22 @@ dependencies {
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
     implementation libs.glide
-    annotationProcessor libs.compiler
+    kapt(libs.compiler)
     implementation libs.lottie
     implementation libs.retrofit
     implementation libs.converter.gson
     implementation libs.logging.interceptor
-    implementation "com.google.dagger:hilt-android:2.28-alpha"
-    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+
+    implementation libs.kotlin.stdlib.jdk7
+
+//Dagger
+    implementation(libs.dagger)
+    implementation(libs.google.dagger.android)
+    implementation(libs.google.dagger.android.support)
+    kapt(libs.google.dagger.android.processor)
+    kapt(libs.dagger.compiler)
+
+
+
+
 }
