@@ -1,27 +1,21 @@
 package com.yuanchik.myapplicationbebe
 
 import android.app.Application
-import com.yuanchik.myapplicationbebe.data.MainRepository
-import com.yuanchik.myapplicationbebe.domain.Interactor
+import com.yuanchik.myapplicationbebe.di.AppComponent
+import com.yuanchik.myapplicationbebe.di.DaggerAppComponent
 
 class App : Application() {
-    lateinit var repo: MainRepository
-    lateinit var interactor: Interactor
+    lateinit var dagger: AppComponent
 
     override fun onCreate() {
         super.onCreate()
-        //Инициализируем экземпляр App, через который будем получать доступ к остальным переменным
         instance = this
-        //Инициализируем репозиторий
-        repo = MainRepository()
-        //Инициализируем интерактор
-        interactor = Interactor(repo)
+        //Создаем компонент
+        dagger = DaggerAppComponent.create()
     }
 
     companion object {
-        //Здесь статически хранится ссылка на экземпляр App
         lateinit var instance: App
-            //Приватный сеттер, чтобы нельзя было в эту переменную присвоить что-либо другое
             private set
     }
 }

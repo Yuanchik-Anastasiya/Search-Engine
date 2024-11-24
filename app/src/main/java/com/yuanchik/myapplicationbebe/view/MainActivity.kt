@@ -18,7 +18,6 @@ import com.yuanchik.myapplicationbebe.databinding.ActivityMainBinding
 import com.yuanchik.myapplicationbebe.domain.Film
 
 class MainActivity : AppCompatActivity() {
-    
 
     private var backPressed = 0L
     private lateinit var binding: ActivityMainBinding
@@ -65,6 +64,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount == 1) {
             if (backPressed + TIME_INTERVAL > System.currentTimeMillis()) {
