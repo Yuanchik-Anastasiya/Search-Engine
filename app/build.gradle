@@ -68,7 +68,5 @@ dependencies {
     kapt(libs.google.dagger.android.processor)
     kapt(libs.dagger.compiler)
 
-
-
-
+    implementation libs.androidx.swiperefreshlayout
 }

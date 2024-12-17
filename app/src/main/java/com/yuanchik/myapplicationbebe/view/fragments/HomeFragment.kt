@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yuanchik.myapplicationbebe.view.rv_adapters.FilmListRecyclerAdapter
-import com.yuanchik.myapplicationbebe.R
 import com.yuanchik.myapplicationbebe.view.rv_adapters.TopSpacingItemDecoration
 import com.yuanchik.myapplicationbebe.databinding.FragmentHomeBinding
 import com.yuanchik.myapplicationbebe.domain.Film
@@ -62,13 +61,24 @@ class HomeFragment(private var binding3: FragmentHomeBinding? = null) : Fragment
 
         initSearchView()
 
+        initPullToRefresh()
+
         initRecyckler()
 
         filmsAdapter.addItems(filmsDataBase)
 
         viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>> {
             filmsDataBase = it
+            filmsAdapter.addItems(it)
         })
+    }
+
+    private fun initPullToRefresh() {
+        binding.pullToRefresh.setOnRefreshListener {
+            filmsAdapter.items.clear()
+            viewModel.getFilms()
+            binding.pullToRefresh.isRefreshing = false
+        }
     }
 
     private fun initSearchView() {

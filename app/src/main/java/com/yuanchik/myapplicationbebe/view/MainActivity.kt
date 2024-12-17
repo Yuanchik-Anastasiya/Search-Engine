@@ -16,6 +16,7 @@ import com.yuanchik.myapplicationbebe.view.fragments.SelectionsFragment
 import com.yuanchik.myapplicationbebe.view.fragments.WatchLaterFragment
 import com.yuanchik.myapplicationbebe.databinding.ActivityMainBinding
 import com.yuanchik.myapplicationbebe.domain.Film
+import com.yuanchik.myapplicationbebe.view.fragments.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -110,6 +111,12 @@ class MainActivity : AppCompatActivity() {
                     val tag = "selections"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment( fragment?: SelectionsFragment(), tag)
+                    true
+                }
+                R.id.settings -> {
+                    val tag = "settings"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment( fragment?: SettingsFragment(), tag)
                     true
                 }
                 else -> false

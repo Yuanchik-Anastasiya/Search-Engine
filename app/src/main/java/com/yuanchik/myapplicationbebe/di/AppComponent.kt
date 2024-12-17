@@ -3,6 +3,7 @@ package com.yuanchik.myapplicationbebe.di
 import com.yuanchik.myapplicationbebe.di.modules.DatabaseModule
 import com.yuanchik.myapplicationbebe.di.modules.DomainModule
 import com.yuanchik.myapplicationbebe.di.modules.RemoteModule
+import com.yuanchik.myapplicationbebe.di.modules.SettingsFragmentViewModel
 import com.yuanchik.myapplicationbebe.viewmodel.HomeFragmentViewModel
 import dagger.Component
 import javax.inject.Singleton
@@ -18,6 +19,6 @@ import javax.inject.Singleton
     ]
 )
 interface AppComponent {
-    //метод для того, чтобы появилась внедрять зависимости в HomeFragmentViewModel
     fun inject(homeFragmentViewModel: HomeFragmentViewModel)
+    fun inject(settingsFragmentViewModel: SettingsFragmentViewModel)
 }
