@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.yuanchik.myapplicationbebe.data.ApiConstants
 import com.yuanchik.myapplicationbebe.R
 import com.yuanchik.myapplicationbebe.domain.Film
 import com.yuanchik.myapplicationbebe.RatingDonutView
@@ -22,7 +23,7 @@ class FilmViewHolder(
     fun bind(film: Film) {
         title.text = film.title
         Glide.with(itemView)
-            .load(film.poster)
+            .load(ApiConstants.IMAGES_URL + "w342" + film.poster)
             .centerCrop()
             .into(poster)
         description.text = film.description

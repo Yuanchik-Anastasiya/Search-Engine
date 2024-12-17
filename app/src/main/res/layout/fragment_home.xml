@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_fragment_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/home_fragment_root"
-    android:visibility="invisible"
-    tools:visibility="visible"
     android:background="@drawable/background_home"
-    tools:context=".view.fragments.HomeFragment">
+    android:visibility="invisible"
+    tools:context=".view.fragments.HomeFragment"
+    tools:visibility="visible">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -16,55 +16,67 @@
         android:layout_height="50dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/background_app_bar"
-        android:fitsSystemWindows="true">
-
-    <com.google.android.material.appbar.CollapsingToolbarLayout
-        android:id="@+id/toolbar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:fitsSystemWindows="true"
-        android:minHeight="60dp"
-        app:statusBarScrim="#0B077C"
-        app:layout_scrollFlags="scroll|enterAlways">
+        tools:ignore="MissingConstraints">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
-        android:background="@drawable/bacground_s_v"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:fitsSystemWindows="true"
-        app:layout_constraintTop_toTopOf="parent"/>
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fitsSystemWindows="true"
+            android:minHeight="60dp"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:statusBarScrim="#0B077C">
 
-    </com.google.android.material.appbar.CollapsingToolbarLayout>
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bacground_s_v"
+                android:fitsSystemWindows="true"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/pull_to_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/content"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.recyclerview.widget.RecyclerView
-
-                android:id="@+id/main_recycler"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/app_bar"
-                app:layout_constraintVertical_bias="1.0"
-                tools:listitem="@layout/film_item"
-                tools:ignore="NotSibling" />
+                android:layout_height="match_parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                <androidx.recyclerview.widget.RecyclerView
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                    android:id="@+id/main_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/app_bar"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:ignore="NotSibling"
+                    tools:listitem="@layout/film_item" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
