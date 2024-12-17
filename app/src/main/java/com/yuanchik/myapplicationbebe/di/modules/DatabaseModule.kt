@@ -1,6 +1,8 @@
 package com.yuanchik.myapplicationbebe.di.modules
 
+import android.content.Context
 import com.yuanchik.myapplicationbebe.data.MainRepository
+import com.yuanchik.myapplicationbebe.data.db.DatabaseHelper
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -10,7 +12,11 @@ import javax.inject.Singleton
 
 @Module
 class DatabaseModule {
+    @Singleton
+    @Provides
+    fun provideDatabaseHelper(context: Context) = DatabaseHelper(context)
+
     @Provides
     @Singleton
-    fun provideRepository() = MainRepository()
+    fun provideRepository(databaseHelper: DatabaseHelper) = MainRepository(databaseHelper)
 }
