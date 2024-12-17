@@ -16,9 +16,9 @@ import com.yuanchik.myapplicationbebe.view.fragments.SelectionsFragment
 import com.yuanchik.myapplicationbebe.view.fragments.WatchLaterFragment
 import com.yuanchik.myapplicationbebe.databinding.ActivityMainBinding
 import com.yuanchik.myapplicationbebe.domain.Film
+import com.yuanchik.myapplicationbebe.view.fragments.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
-    
 
     private var backPressed = 0L
     private lateinit var binding: ActivityMainBinding
@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount == 1) {
             if (backPressed + TIME_INTERVAL > System.currentTimeMillis()) {
@@ -110,6 +111,12 @@ class MainActivity : AppCompatActivity() {
                     val tag = "selections"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment( fragment?: SelectionsFragment(), tag)
+                    true
+                }
+                R.id.settings -> {
+                    val tag = "settings"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment( fragment?: SettingsFragment(), tag)
                     true
                 }
                 else -> false
