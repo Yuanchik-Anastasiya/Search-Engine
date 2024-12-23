@@ -15,7 +15,7 @@ import com.yuanchik.myapplicationbebe.R
 import com.yuanchik.myapplicationbebe.view.fragments.SelectionsFragment
 import com.yuanchik.myapplicationbebe.view.fragments.WatchLaterFragment
 import com.yuanchik.myapplicationbebe.databinding.ActivityMainBinding
-import com.yuanchik.myapplicationbebe.domain.Film
+import com.yuanchik.myapplicationbebe.data.Entity.Film
 import com.yuanchik.myapplicationbebe.view.fragments.SettingsFragment
 
 class MainActivity : AppCompatActivity() {

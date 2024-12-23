@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.yuanchik.myapplicationbebe.data.ApiConstants
 import com.yuanchik.myapplicationbebe.R
 import com.yuanchik.myapplicationbebe.databinding.FragmentDetailsBinding
-import com.yuanchik.myapplicationbebe.domain.Film
+import com.yuanchik.myapplicationbebe.data.Entity.Film
 
 class DetailsFragment : Fragment() {
     private var film: Film? = null
