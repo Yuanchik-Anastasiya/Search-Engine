@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yuanchik.myapplicationbebe.view.rv_adapters.FilmListRecyclerAdapter
 import com.yuanchik.myapplicationbebe.view.rv_adapters.TopSpacingItemDecoration
 import com.yuanchik.myapplicationbebe.databinding.FragmentHomeBinding
-import com.yuanchik.myapplicationbebe.domain.Film
+import com.yuanchik.myapplicationbebe.data.Entity.Film
 import com.yuanchik.myapplicationbebe.utils.AnimationHelper
 import com.yuanchik.myapplicationbebe.view.MainActivity
 import com.yuanchik.myapplicationbebe.viewmodel.HomeFragmentViewModel
@@ -57,7 +58,11 @@ class HomeFragment(private var binding3: FragmentHomeBinding? = null) : Fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        AnimationHelper.performFragmentCircularRevealAnimation(binding.homeFragmentRoot, requireActivity(), 1)
+        AnimationHelper.performFragmentCircularRevealAnimation(
+            binding.homeFragmentRoot,
+            requireActivity(),
+            1
+        )
 
         initSearchView()
 
@@ -70,6 +75,9 @@ class HomeFragment(private var binding3: FragmentHomeBinding? = null) : Fragment
         viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>> {
             filmsDataBase = it
             filmsAdapter.addItems(it)
+        })
+        viewModel.showProgressBar.observe(viewLifecycleOwner, Observer<Boolean> {
+            binding.progressBar.isVisible = it
         })
     }
 

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.yuanchik.myapplicationbebe.view.rv_adapters.FilmListRecyclerAdapter
 import com.yuanchik.myapplicationbebe.view.rv_adapters.TopSpacingItemDecoration
 import com.yuanchik.myapplicationbebe.databinding.FragmentFavoritesBinding
-import com.yuanchik.myapplicationbebe.domain.Film
+import com.yuanchik.myapplicationbebe.data.Entity.Film
 import com.yuanchik.myapplicationbebe.utils.AnimationHelper
 import com.yuanchik.myapplicationbebe.view.MainActivity
 
