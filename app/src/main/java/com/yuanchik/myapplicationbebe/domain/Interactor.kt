@@ -1,5 +1,6 @@
 package com.yuanchik.myapplicationbebe.domain
 
+import androidx.lifecycle.LiveData
 import com.yuanchik.myapplicationbebe.API
 import com.yuanchik.myapplicationbebe.data.Entity.Film
 import com.yuanchik.myapplicationbebe.data.TmdbApi
@@ -29,7 +30,7 @@ class Interactor(
                     list.forEach {
                         repo.putToDb(list)
                     }
-                    callback.onSuccess(list)
+                    callback.onSuccess()
                 }
 
                 override fun onFailure(call: Call<TmdbResultsDto>, t: Throwable) {
@@ -44,5 +45,6 @@ class Interactor(
 
     fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
 
-    fun getFilmsFromDB(): List<Film> = repo.getAllFromDB()
+    fun getFilmsFromDB(): LiveData<List<Film>> =
+        repo.getAllFromDB()
 }

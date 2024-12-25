@@ -1,9 +1,7 @@
 package com.yuanchik.myapplicationbebe.data
 
-import android.content.ContentValues
-import android.database.Cursor
+import androidx.lifecycle.LiveData
 import com.yuanchik.myapplicationbebe.data.DAO.FilmDAO
-import com.yuanchik.myapplicationbebe.data.db.DatabaseHelper
 import com.yuanchik.myapplicationbebe.data.Entity.Film
 import java.util.concurrent.Executors
 
@@ -15,7 +13,6 @@ class MainRepository(private val filmDao: FilmDAO) {
         }
     }
 
-    fun getAllFromDB(): List<Film> {
-        return filmDao.getCachedFilms()
-    }
+    fun getAllFromDB(): LiveData<List<Film>> =
+        filmDao.getCachedFilms()
 }
